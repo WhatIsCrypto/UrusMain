@@ -295,37 +295,5 @@ footer{position:fixed;left:18px;bottom:18px;color:rgba(255,255,255,0.22);font-si
         requestAnimationFrame(loop);
       }
       loop();
-    })();
-
-    // --- View Counter Script ---
-    (async () => {
-      const allTimeEl = document.getElementById('all-time');
-      const todayEl = document.getElementById('today');
-
-      const namespace = 'urus-website';
-      const todayKey = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-
-      async function getCount(key) {
-        try {
-          const res = await fetch(`https://api.countapi.dev/hit/${namespace}/${key}`);
-          if (!res.ok) throw new Error('Bad response');
-          const data = await res.json();
-          return data.value;
-        } catch (err) {
-          console.error(err);
-          return '6';
-        }
-      }
-
-      const [allTime, today] = await Promise.all([
-        getCount('all-time'),
-        getCount(todayKey)
-      ]);
-
-      allTimeEl.textContent = allTime;
-      todayEl.textContent = today;
-    })();
-  </script>
-
 </body>
 </html>
