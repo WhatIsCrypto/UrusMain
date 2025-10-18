@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>@Urus</title>
   <meta name="description" content="Urus's Library." />
-
   <link rel="icon" type="image/png" href="pfp.png" />
-
   <style>
     :root{
       --bg:#050407;
@@ -28,7 +26,6 @@
       position:relative;
     }
 
-    /* --- Custom blurred background image --- */
     .bg-img {
       position:fixed;
       inset:0;
@@ -47,19 +44,19 @@
       width:92%;
       display:grid;
       grid-template-columns:1fr;
-      gap:20px;
+      gap:24px;
       place-items:center;
       text-align:center;
-      padding:48px;
-      border-radius:18px;
+      padding:64px;
+      border-radius:20px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       box-shadow:0 10px 40px rgba(0,0,0,0.6);
       backdrop-filter:blur(6px);
     }
 
     h1{
-      font-size:clamp(28px,6vw,64px);
-      margin:0 0 6px;
+      font-size:clamp(32px,6vw,70px);
+      margin:0 0 10px;
       font-weight:700;
       letter-spacing:0.02em;
       background:var(--gold);
@@ -68,30 +65,31 @@
       color:transparent
     }
 
-    p.lead{color:var(--muted);margin:0 0 18px;font-size:1.05rem}
+    p.lead{color:var(--muted);margin:0 0 22px;font-size:1.15rem}
 
     .card{
-      padding:18px 26px;
-      border-radius:12px;
+      padding:28px 36px;
+      border-radius:16px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid rgba(255,255,255,0.03);
       display:flex;
-      gap:14px;
+      gap:20px;
       align-items:center;
+      transform:scale(1.05);
     }
 
     .logo{
-      width:56px;height:56px;border-radius:10px;
+      width:70px;height:70px;border-radius:12px;
       background:linear-gradient(135deg,#111,#221);
       display:inline-grid;place-items:center;
       color:var(--accent);
-      font-weight:800;font-size:18px;
+      font-weight:800;font-size:22px;
       box-shadow:0 6px 18px rgba(0,0,0,0.6),0 0 20px rgba(255,215,100,0.06) inset
     }
 
     .btn{
       display:inline-block;
-      padding:10px 18px;
+      padding:12px 22px;
       border-radius:10px;
       background:transparent;
       border:1px solid rgba(255,215,120,0.14);
@@ -100,6 +98,7 @@
       font-weight:600;
       backdrop-filter:blur(2px);
       transition:all 0.2s ease;
+      font-size:15px;
     }
     .btn:hover{
       transform:translateY(-3px);
@@ -108,7 +107,6 @@
 
     footer{position:fixed;left:18px;bottom:18px;color:rgba(255,255,255,0.22);font-size:12px;z-index:3}
 
-    /* small shimmer for gold text */
     .shine{position:relative;overflow:hidden;display:inline-block}
     .shine::after{
       content:'';
@@ -119,11 +117,7 @@
     }
     @keyframes shimmer{to{transform:translateX(120%)}}
 
-    /* --- Tooltip for badge --- */
-    .badge-wrapper {
-      position:relative;
-      display:inline-block;
-    }
+    .badge-wrapper { position:relative; display:inline-block; }
     .badge-tooltip {
       position:absolute;
       bottom:130%;
@@ -144,7 +138,7 @@
       transform:translateX(-50%) translateY(-4px);
     }
 
-    @media (max-width:520px){.center{padding:28px}}
+    @media (max-width:520px){.center{padding:36px}.card{flex-direction:column;text-align:center}}
   </style>
 </head>
 <body>
@@ -152,26 +146,26 @@
   <canvas id="stars"></canvas>
 
   <main class="center" role="main">
-    <!-- Custom card with profile pic + badge -->
     <div class="card" aria-hidden="true">
-      <img src="pfp.png" alt="Profile" style="width:560px;height:560px;border-radius:50%;object-fit:contain;box-shadow:0 4px 12px rgba(0,0,0,0.5)" />
-      <div style="text-align:left;display:flex;flex-direction:column;gap:4px;">
-        <div style="font-weight:700;letter-spacing:0.04em;display:flex;align-items:center;gap:6px;">
+      <img src="pfp.png" alt="Profile" style="width:80px;height:80px;border-radius:50%;object-fit:contain;box-shadow:0 4px 12px rgba(0,0,0,0.5)" />
+      <div style="text-align:left;display:flex;flex-direction:column;gap:6px;">
+        <div style="font-weight:700;letter-spacing:0.04em;display:flex;align-items:center;gap:8px;">
           Urus
-          <div style="display:flex;gap:4px;align-items:center;">
+          <div style="display:flex;gap:6px;align-items:center;">
             <span class="badge-wrapper">
-              <img src="Certified.png" alt="Badge" style="width:18px;height:18px;cursor:pointer;object-fit:contain;filter:drop-shadow(0 0 4px rgba(255,215,120,0.6))"/>
+              <img src="Certified.png" alt="Badge" style="width:20px;height:20px;cursor:pointer;object-fit:contain;filter:drop-shadow(0 0 4px rgba(255,215,120,0.6))"/>
               <div class="badge-tooltip">This is the creator badge, 1/1 cool huh?</div>
             </span>
             <span class="badge-wrapper">
-              <img src="amexbadge.png" alt="Badge" style="width:18px;height:18px;cursor:pointer;object-fit:contain;filter:drop-shadow(0 0 4px rgba(255,215,120,0.6))"/>
+              <img src="amexbadge.png" alt="Badge" style="width:20px;height:20px;cursor:pointer;object-fit:contain;filter:drop-shadow(0 0 4px rgba(255,215,120,0.6))"/>
               <div class="badge-tooltip">Centurion badge caus why not?</div>
             </span>
           </div>
         </div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.35)">Exclusive — Creator</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.35)">Exclusive — Creator</div>
       </div>
     </div>
+
     <p class="lead">Hi! Im Urus, a small website coder and probably one of the chillest guy you will met!</p>
 
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center">
