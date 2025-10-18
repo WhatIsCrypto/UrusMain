@@ -59,6 +59,19 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+h1{
+  font-size:clamp(34px,6vw,78px);
+  margin:0 0 10px;
+  font-weight:700;
+  letter-spacing:0.02em;
+  background:var(--gold);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+
+p.lead{color:var(--muted);margin:0 0 24px;font-size:1.2rem}
+
 .card{
   padding:36px 44px;
   border-radius:20px;
@@ -68,6 +81,15 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
   gap:24px;
   align-items:center;
   transform:scale(1.1);
+}
+
+.logo{
+  width:90px;height:90px;border-radius:14px;
+  background:linear-gradient(135deg,#111,#221);
+  display:inline-grid;place-items:center;
+  color:var(--accent);
+  font-weight:800;font-size:26px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.6),0 0 20px rgba(255,215,100,0.06) inset
 }
 
 .btn{
@@ -87,6 +109,18 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
   transform:translateY(-3px);
   box-shadow:0 8px 20px rgba(0,0,0,0.5)
 }
+
+footer{position:fixed;left:18px;bottom:18px;color:rgba(255,255,255,0.22);font-size:12px;z-index:3}
+
+.shine{position:relative;overflow:hidden;display:inline-block}
+.shine::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.18) 55%, transparent 100%);
+  transform:translateX(-120%);
+  animation:shimmer 3.6s linear infinite
+}
+@keyframes shimmer{to{transform:translateX(120%)}}
 
 .badge-wrapper { position:relative; display:inline-block; }
 .badge-tooltip {
@@ -109,34 +143,31 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
   transform:translateX(-50%) translateY(-4px);
 }
 
-/* --- View counter box --- */
 #view-counter {
   position:fixed;
   right:20px;
   bottom:18px;
   display:flex;
-  align-items:center;
-  gap:8px;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
   font-size:14px;
-  color:rgba(255,255,255,0.8);
+  color:rgba(255,255,255,0.6);
   z-index:3;
-  background:rgba(255,255,255,0.05);
-  padding:6px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,215,96,0.1);
-  backdrop-filter:blur(6px);
-  box-shadow:0 0 12px rgba(255,215,96,0.12);
-  user-select:none;
+  text-shadow:0 0 6px rgba(255,215,96,0.3);
 }
 #view-counter svg {
-  stroke: var(--accent);
-  filter: drop-shadow(0 0 6px rgba(255,215,96,0.4));
+  filter:drop-shadow(0 0 4px rgba(255,215,96,0.4));
+}
+.view-line {
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
 @media (max-width:520px){
   .center{padding:40px;}
   .card{flex-direction:column;text-align:center;}
-  #view-counter {font-size:12px;right:14px;bottom:14px;}
 }
 ```
 
@@ -147,7 +178,7 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
   <canvas id="stars"></canvas>
 
   <main class="center" id="tilt-card" role="main">
-    <div class="card">
+    <div class="card" aria-hidden="true">
       <img src="pfp.png" alt="Profile" style="width:100px;height:100px;border-radius:50%;object-fit:contain;box-shadow:0 4px 12px rgba(0,0,0,0.5)" />
       <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
         <div style="font-weight:700;letter-spacing:0.04em;display:flex;align-items:center;gap:10px;">
@@ -178,16 +209,23 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
 
   </main>
 
-  <!-- Eye Icon + View Counter -->
+  <!-- View Counter -->
 
   <div id="view-counter">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
-      <path d="M1 9s4-6 11-6 11 6 11 6-4 6-11 6S1 9 1 9z"/>
-      <circle cx="12" cy="9" r="3"/>
-    </svg>
-    <span id="views-today">Today: —</span>
-    <span style="opacity:0.5;">|</span>
-    <span id="views-total">All-time: —</span>
+    <div class="view-line">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="rgba(255,215,96,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 9s4-6 11-6 11 6 11 6-4 6-11 6S1 9 1 9z"/>
+        <circle cx="12" cy="9" r="3"/>
+      </svg>
+      <span>All time: <span id="all-time">-</span></span>
+    </div>
+    <div class="view-line">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="rgba(255,215,96,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 9s4-6 11-6 11 6 11 6-4 6-11 6S1 9 1 9z"/>
+        <circle cx="12" cy="9" r="3"/>
+      </svg>
+      <span>Today: <span id="today">-</span></span>
+    </div>
   </div>
 
   <script>
@@ -196,6 +234,7 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
       const canvas = document.getElementById('stars');
       const ctx = canvas.getContext('2d');
       let DPR = Math.min(window.devicePixelRatio || 1, 2);
+
       function resize(){
         DPR = Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = Math.floor(window.innerWidth * DPR);
@@ -211,9 +250,10 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
       const STAR_COUNT = Math.round((window.innerWidth * window.innerHeight) / 22000);
       function rand(min,max){return Math.random()*(max-min)+min}
       for(let i=0;i<STAR_COUNT;i++){
-        stars.push({x:rand(0,window.innerWidth),y:rand(0,window.innerHeight),r:rand(0.6,2.6),baseR:0,vx:0,vy:0,flick:Math.random()*1.2});
+        stars.push({x:rand(0,window.innerWidth),y:rand(0,window.innerHeight),r:rand(0.6,2.6),baseR:0,hue:rand(180,55),vx:0,vy:0,flick:Math.random()*1.2});
       }
       stars.forEach(s=>s.baseR = s.r);
+
       let mouse = {x:window.innerWidth/2,y:window.innerHeight/2,active:false};
       window.addEventListener('mousemove', e=>{mouse.x=e.clientX;mouse.y=e.clientY;mouse.active=true},{passive:true});
       window.addEventListener('mouseout', ()=>{mouse.active=false});
@@ -223,6 +263,7 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
         const dy=(mouse.y-window.innerHeight/2)/(window.innerHeight/2);
         root.style.transform=`translate3d(${dx*6}px,${dy*6}px,0) rotateY(${dx*8}deg) rotateX(${-dy*8}deg)`;
       }
+
       function loop(){
         ctx.clearRect(0,0,canvas.width/DPR,canvas.height/DPR);
         const time=performance.now()/1000;
@@ -242,6 +283,7 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
           s.vx*=0.92;s.vy*=0.92;s.x+=s.vx;s.y+=s.vy;
           if(s.x<0)s.x=window.innerWidth;if(s.x>window.innerWidth)s.x=0;
           if(s.y<0)s.y=window.innerHeight;if(s.y>window.innerHeight)s.y=0;
+
           const grad=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,Math.max(8,s.r*6));
           grad.addColorStop(0,'rgba(255,245,200,'+(0.28*(s.r/2))+')');
           grad.addColorStop(0.3,'rgba(255,200,120,'+(0.12*(s.r/2))+')');
@@ -259,32 +301,33 @@ canvas{position:fixed;inset:0;display:block;z-index:1;pointer-events:none}
       loop();
     })();
 
-    // --- Fixed All-time & daily view counter ---
-    (function(){
-      const todayEl = document.getElementById('views-today');
-      const totalEl = document.getElementById('views-total');
-      const base = 'urus-website'; // unique namespace
-      const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    // --- View Counter Script ---
+    (async () => {
+      const allTimeEl = document.getElementById('all-time');
+      const todayEl = document.getElementById('today');
 
-      // All-time counter
-      fetch(`https://api.countapi.dev/hit/${base}-total`)
-        .then(res => res.json())
-        .then(data => {
-          totalEl.textContent = 'All-time: ' + data.value.toLocaleString();
-        })
-        .catch(() => {
-          totalEl.textContent = 'All-time: —';
-        });
+      const namespace = 'urus-website';
+      const todayKey = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
-      // Daily counter
-      fetch(`https://api.countapi.dev/hit/${base}-${today}`)
-        .then(res => res.json())
-        .then(data => {
-          todayEl.textContent = 'Today: ' + data.value.toLocaleString();
-        })
-        .catch(() => {
-          todayEl.textContent = 'Today: —';
-        });
+      async function getCount(key) {
+        try {
+          const res = await fetch(`https://api.countapi.dev/hit/${namespace}/${key}`);
+          if (!res.ok) throw new Error('Bad response');
+          const data = await res.json();
+          return data.value;
+        } catch (err) {
+          console.error(err);
+          return '-';
+        }
+      }
+
+      const [allTime, today] = await Promise.all([
+        getCount('all-time'),
+        getCount(todayKey)
+      ]);
+
+      allTimeEl.textContent = allTime;
+      todayEl.textContent = today;
     })();
   </script>
 
