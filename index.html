@@ -1,72 +1,7 @@
-<!-- @Urus is the creator of this code! © 2025 Legal - All Rights Reserved.-->
+<!-- @Urus is the creator of this code! © 2025-2026 Legal - All Rights Reserved. -->
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urus was here</title>
-</head>
-
-<body>
-    <!--x123y-->
-    <audio autoplay>
-        <source src="https://r2.guns.lol/e8623e14-181a-447f-9ea8-44d90301dfbe.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <script type="text/javascript">
-        var zzzx = 120,
-            xm1 = 400,
-            oxm = 300,
-            sw1 = 800,
-            sh2 = 600;
-
-        function zzf(c) {
-            return c ? document.createElement(c) : null;
-        }
-
-        window.onload = function () {
-            if (zzf("div")) {
-                var i, tn = [], st = [], sv = [];
-                for (i = 0; i < zzzx; i++) {
-                    var a = zzf("div");
-                    a.style.visibility = "hidden";
-                    tn[i] = a;
-                    document.body.appendChild(a);
-
-                    st[i] = zzf("div");
-                    st[i].style.visibility = "hidden";
-                    document.body.appendChild(st[i]);
-                }
-                spark();
-            }
-        };
-
-        function spark() {
-            for (var a = 0; a < zzzx; a++)
-                sv[a] ? upd_s(a) : upd_t(a);
-            setTimeout("spark()", 50);
-        }
-
-        function upd_s(i) {
-            if (sv[i]) st[i].style.visibility = "hidden";
-        }
-
-        function upd_t(i) {
-            tn[i].style.visibility = "hidden";
-        }
-
-        document.onmousemove = function (e) {
-            xm1 = e.pageX, oxm = e.pageY;
-        };
-    </script>
-</body>
-</html>
-
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,17 +15,11 @@
             overflow: hidden;
             color: white;
             cursor: url('https://r2.guns.lol/0ccefdec-80f9-4131-bf8d-4b32492c2f35.png'), auto;
+            background: url('bg.webp') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
+        audio { display: none; }
 
         .bio-container {
             text-align: center;
@@ -98,7 +27,7 @@
             top: 50%;
             left: 10%;
             transform: translateY(-50%);
-            z-index: 1;
+            z-index: 2;
         }
 
         .description {
@@ -113,21 +42,8 @@
             animation: typing 4s steps(30, end), blink 0.5s step-end infinite;
         }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
 
         .logo-container {
             display: flex;
@@ -141,7 +57,6 @@
             display: block;
             width: 120px;
             height: 120px;
-            position: relative;
         }
 
         .logo-container img {
@@ -149,55 +64,38 @@
             height: 100%;
             object-fit: contain;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
         }
 
-        .logo-container img:hover {
-            transform: scale(1.1);
-        }
+        .logo-container img:hover { transform: scale(1.1); }
 
         .typewriter {
             display: inline-block;
             font-size: 4rem;
             font-family: 'Black Audio', sans-serif;
             color: purple;
-            text-shadow: 0 0 10px purple, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple;
+            text-shadow: 0 0 10px purple, 0 0 20px purple;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards, glow 2s infinite alternate;
             margin-top: 30px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes glow {
-            0% {
-                text-shadow: 0 0 10px purple, 0 0 20px purple, 0 0 30px purple, 0 0 40px purple;
-                color: purple;
-            }
-
-            100% {
-                text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px pink, 0 0 40px pink;
-                color: pink;
-            }
+            0% { text-shadow: 0 0 10px purple; color: purple; }
+            100% { text-shadow: 0 0 10px pink; color: pink; }
         }
-<style>
-    body {
-        margin: 0;
-        background: url('bg.webp') no-repeat center center fixed;
-        background-size: cover;
-        overflow: hidden;
-    }
-</style>
+    </style>
+</head>
 
+<body>
+    <!-- Autoplay Music -->
+    <audio autoplay>
+        <source src="https://r2.guns.lol/e8623e14-181a-447f-9ea8-44d90301dfbe.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Bio Section -->
     <div class="bio-container">
         <p id="description" class="description"></p>
 
@@ -216,32 +114,31 @@
         <h1 class="typewriter">URUS</h1>
     </div>
 
+    <!-- Typing Script -->
     <script>
-        const dd1 = [
-            "↓↓ Some things i made! ↓↓",
+        const lines = [
+            "↓↓ Some things I made! ↓↓",
             "Be safe on the internet..",
             "I love you - Legal ♡",
             "I love coding!"
-        ],
-            dd2 = document.getElementById("description");
-        let dd3 = 0;
+        ];
+        const description = document.getElementById("description");
+        let index = 0;
 
-        function dd4() {
-            dd2.textContent = "";
-            const t = dd1[dd3];
+        function typeText() {
+            description.textContent = "";
+            const text = lines[index];
             let i = 0;
-            const s = setInterval(() => {
-                dd2.textContent += t[i];
+            const timer = setInterval(() => {
+                description.textContent += text[i];
                 i++;
-                if (i === t.length) clearInterval(s);
+                if (i === text.length) clearInterval(timer);
             }, 100);
-            dd3 = (dd3 + 1) % dd1.length;
+            index = (index + 1) % lines.length;
         }
 
-        dd4();
-        setInterval(dd4, 5000);
+        typeText();
+        setInterval(typeText, 5000);
     </script>
 </body>
 </html>
-
-<!-- @Urus is the creator of this code! © 2026 Legal - All Rights Reserved.-->
