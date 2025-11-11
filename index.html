@@ -86,6 +86,45 @@
             0% { text-shadow: 0 0 10px purple; color: purple; }
             100% { text-shadow: 0 0 10px pink; color: pink; }
         }
+
+        /* ===== Right Side Typewriter Text ===== */
+        .right-typewriter-container {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            text-align: right;
+        }
+
+        .right-typewriter {
+            font-family: Arial, sans-serif;
+            font-size: 1.8rem;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #ffffff;
+            animation: typingRight 4s steps(30, end), blinkRight 0.5s step-end infinite;
+        }
+
+        .right-typewriter:nth-child(2) {
+            animation-delay: 4.5s;
+        }
+
+        .right-typewriter:nth-child(3) {
+            animation-delay: 9s;
+        }
+
+        @keyframes typingRight {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkRight {
+            50% { border-color: transparent; }
+        }
     </style>
 </head>
 
@@ -112,6 +151,13 @@
         </div>
 
         <h1 class="typewriter">URUS</h1>
+    </div>
+
+    <!-- Right-Side Typewriter Texts -->
+    <div class="right-typewriter-container">
+        <div class="right-typewriter">creator of urus</div>
+        <div class="right-typewriter">web designer</div>
+        <div class="right-typewriter">digital artist</div>
     </div>
 </body>
 </html>
