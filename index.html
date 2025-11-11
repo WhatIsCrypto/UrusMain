@@ -15,7 +15,7 @@
             overflow: hidden;
             color: white;
             cursor: url('https://r2.guns.lol/0ccefdec-80f9-4131-bf8d-4b32492c2f35.png'), auto;
-            background: url('bg.webp') no-repeat center center fixed;
+            background: url('') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -101,44 +101,17 @@
 
         <div class="logo-container">
             <a href="https://library.urus.lol/" target="_blank">
-                <img src="https://cdn.discordapp.com/attachments/1332812154944098428/1333174078714019892/Untitled_Project_1.png" alt="Website 1">
+                <img src="1.png" alt="Website 1">
             </a>
             <a href="https://staged.lol/" target="_blank">
-                <img src="https://cdn.discordapp.com/attachments/1332812154944098428/1332882573273071677/Untitled_Project.png" alt="Website 2">
+                <img src="2.png" alt="Website 2">
             </a>
             <a href="https://urus.lol/" target="_blank">
-                <img src="https://r2.guns.lol/ea64713e-909b-4cd6-b3e5-c30d58c52b7a.webp" alt="Website 3">
+                <img src="3.png" alt="Website 3">
             </a>
         </div>
 
         <h1 class="typewriter">URUS</h1>
     </div>
-
-    <!-- Typing Script -->
-    <script>
-        const lines = [
-            "↓↓ Some things I made! ↓↓",
-            "Be safe on the internet..",
-            "I love you - Legal ♡",
-            "I love coding!"
-        ];
-        const description = document.getElementById("description");
-        let index = 0;
-
-        function typeText() {
-            description.textContent = "";
-            const text = lines[index];
-            let i = 0;
-            const timer = setInterval(() => {
-                description.textContent += text[i];
-                i++;
-                if (i === text.length) clearInterval(timer);
-            }, 100);
-            index = (index + 1) % lines.length;
-        }
-
-        typeText();
-        setInterval(typeText, 5000);
-    </script>
 </body>
 </html>
