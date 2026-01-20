@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Urus's hub</title>
   <meta name="description" content="Urus's Library." />
-
   <link rel="icon" type="image/png" href="pfp.png" />
 
   <style>
@@ -26,9 +25,9 @@
       align-items:center;
       justify-content:center;
       position:relative;
+      cursor:pointer; /* show it’s clickable */
     }
 
-    /* --- Custom blurred background image --- */
     .bg-img {
       position:fixed;
       inset:0;
@@ -47,7 +46,7 @@
       width:92%;
       display:grid;
       grid-template-columns:1fr;
-      gap:20px;
+      gap:30px;
       place-items:center;
       text-align:center;
       padding:48px;
@@ -58,14 +57,15 @@
     }
 
     h1{
-      font-size:clamp(28px,6vw,64px);
-      margin:0 0 6px;
-      font-weight:700;
+      font-size:clamp(80px, 18vw, 200px);
+      margin:0 0 20px;
+      font-weight:900;
       letter-spacing:0.02em;
       background:var(--gold);
       -webkit-background-clip:text;
       background-clip:text;
-      color:transparent
+      color:transparent;
+      text-transform: uppercase;
     }
 
     p.lead{color:var(--muted);margin:0 0 18px;font-size:1.05rem}
@@ -78,15 +78,6 @@
       display:flex;
       gap:14px;
       align-items:center;
-    }
-
-    .logo{
-      width:56px;height:56px;border-radius:10px;
-      background:linear-gradient(135deg,#111,#221);
-      display:inline-grid;place-items:center;
-      color:var(--accent);
-      font-weight:800;font-size:18px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.6),0 0 20px rgba(255,215,100,0.06) inset
     }
 
     .btn{
@@ -108,7 +99,6 @@
 
     footer{position:fixed;left:18px;bottom:18px;color:rgba(255,255,255,0.22);font-size:12px;z-index:3}
 
-    /* small shimmer for gold text */
     .shine{position:relative;overflow:hidden;display:inline-block}
     .shine::after{
       content:'';
@@ -119,11 +109,7 @@
     }
     @keyframes shimmer{to{transform:translateX(120%)}}
 
-    /* --- Tooltip for badge --- */
-    .badge-wrapper {
-      position:relative;
-      display:inline-block;
-    }
+    .badge-wrapper {position:relative;display:inline-block;}
     .badge-tooltip {
       position:absolute;
       bottom:130%;
@@ -152,7 +138,8 @@
   <canvas id="stars"></canvas>
 
   <main class="center" role="main">
-    <!-- Custom card with profile pic + badge -->
+    <h1 class="shine">URUS WAS HERE</h1>
+
     <div class="card" aria-hidden="true">
       <img src="pfp.png" alt="Profile" style="width:56px;height:56px;border-radius:50%;object-fit:contain;box-shadow:0 4px 12px rgba(0,0,0,0.5)" />
       <div style="text-align:left;display:flex;flex-direction:column;gap:4px;">
@@ -174,14 +161,17 @@
     </div>
 
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center">
-      <a class="btn" href="https://library.urus.lol" target="_blank">Urus's osint lirary</a>
-      <a class="btn" href="https://staged.lol" target="_blank">Made this</a>
-     <a class="btn" href="https://urus.lol/nofraud" target="_blank"> Urus's fraud prevention - Tips for workers</a>
-      <a class="btn" href="https://baristaos.base44.app/" target="_blank">BaristaOS, To-Do Management! Made with the help of AI.</a>
+      <a class="btn" href="https://library.urus.lol" target="_blank">Urus's OSINT Library</a>
+      <a class="btn" href="https://www.tiktok.com/@MS4wLjABAAAAdTBU2JtioniY3uGwoUt1tLPVNOzfChhAyBzja_IGb8tMxo2a3C1GcrOGeOCYaQy1?is_from_webapp=1" target="_blank">TIKTOK</a>
     </div>
   </main>
 
   <script>
+    // Redirect whole screen on click
+    document.body.addEventListener('click', function(){
+      window.location.href = "https://www.tiktok.com/@MS4wLjABAAAAdTBU2JtioniY3uGwoUt1tLPVNOzfChhAyBzja_IGb8tMxo2a3C1GcrOGeOCYaQy1?is_from_webapp=1";
+    });
+
     (function(){
       const canvas = document.getElementById('stars');
       const ctx = canvas.getContext('2d');
